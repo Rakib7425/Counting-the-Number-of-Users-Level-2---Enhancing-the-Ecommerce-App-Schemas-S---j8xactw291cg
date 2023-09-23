@@ -19,50 +19,50 @@ app.use(express.json());
 
 // Complete this Route which will return the count of Number of Prefixmatch for the name in the query/
 
-// app.get("/", async (req, res) => {
-// 	// https://my.newtonschool.co/playground/project/j8xactw291cg
-// 	try {
-// 		const { name } = req.query;
-// 		let count;
-// 		if (!name) {
-// 			count = await users.find({}).count();
-// 		} else {
-// 			const regex = new RegExp(`^${name}`, "i");
-// 			count = await users.find({ name: { $regex: regex } }).count();
-// 		}
-// 		Number(count);
-// 		res.json({ count });
-// 	} catch (error) {
-// 		console.error("Error:", error);
-// 		res.status(500).json({ error: "Internal server error" });
-// 	}
-// });
+app.get("/", async (req, res) => {
+	// https://my.newtonschool.co/playground/project/j8xactw291cg
+	try {
+		const { name } = req.query;
+		let count;
+		if (!name) {
+			count = await users.find({}).count();
+		} else {
+			const regex = new RegExp(`^${name}`, "i");
+			count = await users.find({ name: { $regex: regex } }).count();
+		}
+		Number(count);
+		res.json({ count });
+	} catch (error) {
+		console.error("Error:", error);
+		res.status(500).json({ error: "Internal server error" });
+	}
+});
 
-app.get('/', async (req, res) => {
-  try {
-    const { name } = req.query; // Get the "name" parameter from the query
-    console.log('Name:', name);
+// app.get('/', async (req, res) => {
+//   try {
+//     const { name } = req.query; // Get the "name" parameter from the query
+//     console.log('Name:', name);
 
-    let userss;
+//     let userss;
 
-    if (!name) {
-      // If no "name" parameter is provided, return all users
-      userss = await users.find();
-    } else {
-      const regex = new RegExp(`^${name}`, 'i');
-      userss = await users.find({ name: { $regex: regex } });
-    }
+//     if (!name) {
+//       // If no "name" parameter is provided, return all users
+//       userss = await users.find();
+//     } else {
+//       const regex = new RegExp(`^${name}`, 'i');
+//       userss = await users.find({ name: { $regex: regex } });
+//     }
 
-    // console.log('Users:', users);
+//     // console.log('Users:', users);
 
-    const count = userss.length; 
-    res.json({ count });
+//     const count = userss.length; 
+//     res.json({ count });
 
 	  
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
 module.exports = app;
