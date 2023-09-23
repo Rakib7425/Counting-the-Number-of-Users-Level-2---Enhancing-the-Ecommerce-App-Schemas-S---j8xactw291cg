@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const users   =require("../models/user.js");
+const User = require("../models/user.js");
 
 //Router Middlewares
 app.use(express.json());
