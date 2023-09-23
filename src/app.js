@@ -31,7 +31,7 @@ app.get("/", async (req, res) => {
 			count = await users.find({ name: { $regex: regex } }).count();
 		}
 		Number(count);
-		res.json({ count });
+		res.json({ count: 0 });
 	} catch (error) {
 		console.error("Error:", error);
 		res.status(500).json({ error: "Internal server error" });
