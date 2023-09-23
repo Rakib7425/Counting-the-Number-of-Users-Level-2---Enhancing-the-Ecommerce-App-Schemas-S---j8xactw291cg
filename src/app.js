@@ -30,6 +30,7 @@ app.get("/", async (req, res) => {
 			const regex = new RegExp(`^${name}`, "i");
 			count = await users.find({ name: { $regex: regex } }).count();
 		}
+		Number(count);
 		res.json({ count });
 	} catch (error) {
 		console.error("Error:", error);
