@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const User = require("../models/user.js");
+const users = require("../models/user.js");
 
 //Router Middlewares
 app.use(express.json());
@@ -25,10 +25,10 @@ app.get("/", async (req, res) => {
 		const { name } = req.query;
 		let count;
 		if (!name) {
-			count = await User.find({}).count();
+			count = await users.find({}).count();
 		} else {
 			const regex = new RegExp(`^${name}`, "i");
-			count = await User.find({ name: { $regex: regex } }).count();
+			count = await users.find({ name: { $regex: regex } }).count();
 		}
 		res.json({ count });
 	} catch (error) {
