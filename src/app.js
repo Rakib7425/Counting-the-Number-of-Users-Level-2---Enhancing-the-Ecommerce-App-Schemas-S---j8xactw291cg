@@ -23,15 +23,18 @@ app.get("/", async (req, res) => {
 	// https://my.newtonschool.co/playground/project/j8xactw291cg
 	try {
 		const { name } = req.query;
-		let count;
+		var count = 0;
 		if (!name) {
-			count = await users.find({}).count();
+			count = await User.find({}).count();
 		} else {
 			const regex = new RegExp(`^${name}`, "i");
-			count = await users.find({ name: { $regex: regex } }).count();
+			count = await User.find({ username: { $regex: regex } }).count();
+			// count = await User.find({ name: { $regex: regex } }).count();
 		}
 		Number(count);
-		res.json({ count });
+		// console.log(typeof count);
+		res.send({ count });
+		
 	} catch (error) {
 		console.error("Error:", error);
 		res.status(500).json({ error: "Internal server error" });
