@@ -9,7 +9,6 @@ app.use(express.json());
 //Type of query (Hint)
 
 /*
-
 1. / --> this means we need to consider all users
 2. /?name=swa --> Will return count of all the user name that have prefix swa. We will (Swaraj Jain, Swarak agrawal, etc). 
 3. /?name= -->this means we need to consider all users
